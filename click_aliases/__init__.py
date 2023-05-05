@@ -67,7 +67,7 @@ class ClickAliasedGroup(click.Group):
 
         # Step two: look up an explicit command alias
         cmd_name = self.resolve_alias(cmd_name)
-        command = super(AliasedGroup, self).get_command(ctx, cmd_name)
+        command = super(ClickAliasedGroup, self).get_command(ctx, cmd_name)
         if command:
             return command
 
