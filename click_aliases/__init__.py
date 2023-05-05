@@ -16,7 +16,7 @@ class ClickAliasedGroup(click.Group):
         
     def add_command(self, cmd: click.Command, *args, **kwargs):
         aliases = kwargs.pop("aliases", [])
-        super(AliasedGroup, self).add_command(cmd, *args, **kwargs)
+        super(ClickAliasedGroup, self).add_command(cmd, *args, **kwargs)
         if aliases:
             self._commands[cmd.name] = aliases
             for alias in aliases:
