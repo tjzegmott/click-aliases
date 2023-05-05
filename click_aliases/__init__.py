@@ -13,6 +13,14 @@ class ClickAliasedGroup(click.Group):
         super(ClickAliasedGroup, self).__init__(*args, **kwargs)
         self._commands = {}
         self._aliases = {}
+        
+    def add_command(self, cmd: click.Command, *args, **kwargs):
+        aliases = kwargs.pop("aliases", [])
+        super(AliasedGroup, self).add_command(cmd, *args, **kwargs)
+        if aliases:
+            self._commands[cmd.name] = aliases
+            for alias in aliases:
+                self._aliases[alias] = cmd.name
 
     def command(self, *args, **kwargs):
         aliases = kwargs.pop('aliases', [])
